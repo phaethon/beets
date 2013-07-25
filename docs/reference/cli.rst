@@ -199,6 +199,8 @@ overridden with ``-w`` (write tags, the default) and ``-W`` (don't write tags).
 Finally, this command politely asks for your permission before making any
 changes, but you can skip that prompt with the ``-y`` switch.
 
+.. _move-cmd:
+
 move
 ````
 ::
@@ -228,9 +230,18 @@ This will scan all the matched files and read their tags, populating the
 database with the new values. By default, files will be renamed according to
 their new metadata; disable this with ``-M``.
 
-To perform a "dry run" an update, just use the ``-p`` (for "pretend") flag. This
-will show you all the proposed changes but won't actually change anything on
-disk.
+To perform a "dry run" of an update, just use the ``-p`` (for "pretend") flag.
+This will show you all the proposed changes but won't actually change anything
+on disk.
+
+When an updated track is part of an album, the album-level fields of *all*
+tracks from the album are also updated. (Specifically, the command copies
+album-level data from the first track on the album and applies it to the
+rest of the tracks.) This means that, if album-level fields aren't identical
+within an album, some changes shown by the ``update`` command may be
+overridden by data from other tracks on the same album. This means that
+running the ``update`` command multiple times may show the same changes being
+applied.
 
 .. _stats-cmd:
 
@@ -246,6 +257,8 @@ Show some statistics on your entire library (if you don't provide a
 The ``-e`` (``--exact``) option makes the calculation of total file size more
 accurate but slower.
 
+.. _fields-cmd:
+
 fields
 ``````
 ::
@@ -253,8 +266,7 @@ fields
     beet fields
 
 Show the item and album metadata fields available for use in :doc:`query` and
-:doc:`pathformat`.
-
+:doc:`pathformat`. Includes any template fields provided by plugins.
 
 Global Flags
 ------------

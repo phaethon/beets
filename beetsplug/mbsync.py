@@ -72,7 +72,7 @@ def mbsync_singletons(lib, query, move, pretend, write):
         s.old_data = dict(s.record)
 
         # Get the MusicBrainz recording info.
-        track_info = hooks._track_for_id(s.mb_trackid)
+        track_info = hooks.track_for_mbid(s.mb_trackid)
         if not track_info:
             log.info(u'Recording ID not found: {0}'.format(s.mb_trackid))
             continue
@@ -97,7 +97,7 @@ def mbsync_albums(lib, query, move, pretend, write):
             item.old_data = dict(item.record)
 
         # Get the MusicBrainz album information.
-        album_info = hooks._album_for_id(a.mb_albumid)
+        album_info = hooks.album_for_mbid(a.mb_albumid)
         if not album_info:
             log.info(u'Release ID not found: {0}'.format(a.mb_albumid))
             continue
