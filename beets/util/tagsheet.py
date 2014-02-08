@@ -74,7 +74,7 @@ class TagSheet(object):
                 else:
                     if 'REM' not in self.tags:
                         self.tags[command] = []
-                    self.taggs[command].append(line[4:].strip())
+                    self.tags[command].append(line[4:].strip())
             elif command in ["CATALOG", "CDTEXTFILE"]:
                 match = TITLE_RE.match(line)
                 if match:
